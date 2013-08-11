@@ -12,7 +12,9 @@ enum State{
 class Model : public QObject
 {
 	Q_OBJECT
-
+	Q_PROPERTY(QList<State> gameField READ gameField NOTIFY gameFieldChange)
+	Q_PROPERTY(bool hasError READ hasError NOTIFY hasErrorChange)
+	Q_PROPERTY(QString errorText READ errorText NOTIFY hasErrorChange)
 public:
 	explicit Model(QObject *parent = 0);
 
