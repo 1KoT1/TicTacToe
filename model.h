@@ -9,17 +9,34 @@ enum State{
 	O
 };
 
+class Cell : public QObject{
+	Q_OBJECT
+	Q_PROPERTY(bool cellValue READ value NOTIFY valueChange)
+public:
+	explicit Cell(QObject *parent = 0);
+
+	int value() const;
+	void setValue(int value);
+
+signals:
+	void valueChange();
+
+private:
+	int m_value;
+};
+//Q_DECLARE_METATYPE(Cell)
+
 class Model : public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(QList<State> gameField READ gameField NOTIFY gameFieldChange)
+	Q_PROPERTY(QList<QObject*> gameField READ gameField NOTIFY gameFieldChange)
 	Q_PROPERTY(bool hasError READ hasError NOTIFY hasErrorChange)
 	Q_PROPERTY(QString errorText READ errorText NOTIFY hasErrorChange)
 public:
 	explicit Model(QObject *parent = 0);
 
 	/** Клетки игрового поля представленные в виде одного массива. */
-	const QList<State> & gameField() const;
+	const QList<QObject *> &gameField() const;
 	
 	/** Возникла ошибка.*/
 	bool hasError();
@@ -30,7 +47,7 @@ signals:
 	void hasErrorChange();
 
 private:
-	QList<State> m_gameField;
+	QList<QObject*> m_gameField;
 };
 
 #endif // MODEL_H

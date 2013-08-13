@@ -3,14 +3,11 @@ import QtQuick 2.0
 Rectangle {
     width: 360
     height: 360
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
-    }
-    MouseArea {
+
+    GridView {
+        id: game_feild_view
         anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
+        model: gameModel.gameField
+        delegate: Text{text: modelData.cellValue}
     }
 }
