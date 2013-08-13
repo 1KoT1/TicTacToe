@@ -11,18 +11,18 @@ enum State{
 
 class Cell : public QObject{
 	Q_OBJECT
-	Q_PROPERTY(bool cellValue READ value NOTIFY valueChange)
+    Q_PROPERTY(int cellValue READ value NOTIFY valueChange)
 public:
 	explicit Cell(QObject *parent = 0);
 
-	int value() const;
-	void setValue(int value);
+    State value() const;
+    void setValue(State value);
 
 signals:
 	void valueChange();
 
 private:
-	int m_value;
+    State m_value;
 };
 //Q_DECLARE_METATYPE(Cell)
 

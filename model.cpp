@@ -24,15 +24,15 @@ QString Model::errorText(){
 
 Cell::Cell(QObject *parent) :
 	QObject(parent),
-	m_value(0)
+    m_value(Empty)
 {
 }
 
-int Cell::value() const{
+State Cell::value() const{
 	return m_value;
 }
 
-void Cell::setValue(int v){
+void Cell::setValue(State v){
 	if(m_value != v){
 		m_value = v;
 		emit valueChange();
