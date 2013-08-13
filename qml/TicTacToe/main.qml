@@ -4,10 +4,14 @@ Rectangle {
     width: 360
     height: 360
 
-    GridView {
-        id: game_feild_view
+    Grid {
+        id: gameField
+        rows: 3
+        columns: 3
         anchors.fill: parent
-        model: gameModel.gameField
-        delegate: Text{text: modelData.cellValue}
+        Repeater{
+            model: gameModel.gameField
+            delegate: Text{ text: modelData.cellValue }
+        }
     }
 }
