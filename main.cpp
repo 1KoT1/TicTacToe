@@ -2,14 +2,17 @@
 #include "qtquick2applicationviewer.h"
 #include "model.h"
 #include <QQmlContext>
+#include "controller.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-//		qmlRegisterType<State>("TicTacToeComponents", 1, 0, "State");
+    //		qmlRegisterType<State>("TicTacToeComponents", 1, 0, "State");
     QtQuick2ApplicationViewer viewer;
-		viewer.rootContext()->setContextProperty("gameModel", new Model(&app));
+    auto model = new Model(&app);
+    viewer.rootContext()->setContextProperty("gameModel", model);
+    viewer.rootContext()->setContextProperty("gameController", new Controller(model, &app));
     viewer.setMainQmlFile(QStringLiteral("qml/TicTacToe/main.qml"));
     viewer.showExpanded();
 

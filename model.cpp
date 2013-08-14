@@ -2,39 +2,47 @@
 
 const int width = 3, height = 3;
 Model::Model(QObject *parent) :
-	QObject(parent),
-	m_gameField(QList<QObject*>())
+    QObject(parent),
+    m_gameField(QList<Cell*>())
 {
-	for (int i = 0; i < width * height; ++i)
-		m_gameField << new Cell(this);
+    for (int i = 0; i < width * height; ++i)
+        m_gameField << new Cell(this);
 }
 
-const QList<QObject *> &Model::gameField() const{
-	return m_gameField;
+const QList<Cell *> &Model::gameField() const{
+    return m_gameField;
+}
+
+const QList<QObject *> Model::gameFieldProperty() const{
+    auto res = QList<QObject*>();
+    foreach (auto var, m_gameField)
+        res << var;
+
+    return res;
 }
 
 bool Model::hasError(){
-	return false;
+    return false;
 }
 
 QString Model::errorText(){
-	return "";
+    return "";
 }
 
 
 Cell::Cell(QObject *parent) :
-	QObject(parent),
+    QObject(parent),
     m_value(Empty)
 {
 }
 
 State Cell::value() const{
-	return m_value;
+    return m_value;
 }
 
 void Cell::setValue(State v){
-	if(m_value != v){
-		m_value = v;
-		emit valueChange();
-	}
+    if(m_value != v){
+        m_value = v;
+        emit valueChange();
+    }
 }

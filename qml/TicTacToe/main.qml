@@ -11,7 +11,13 @@ Rectangle {
         anchors.fill: parent
         Repeater{
             model: gameModel.gameField
-            delegate: Text{ text: modelData.cellValue }
+            delegate: Text{
+                text: modelData.cellValue
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: gameController.chengeCell(index)
+                }
+            }
         }
     }
 }
