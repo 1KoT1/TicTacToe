@@ -50,7 +50,7 @@ public:
 
     /** Возникла ошибка.*/
     bool hasError();
-    /** екст возникшей ошибки.*/
+    /** Текст возникшей ошибки.*/
     QString errorText();
 signals:
     void gameFieldChange();
