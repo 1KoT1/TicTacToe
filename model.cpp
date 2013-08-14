@@ -3,7 +3,8 @@
 const int width = 3, height = 3;
 Model::Model(QObject *parent) :
     QObject(parent),
-    m_gameField(QList<Cell*>())
+    m_gameField(QList<Cell*>()),
+    m_gamer(Gamer::X)
 {
     for (int i = 0; i < width * height; ++i)
         m_gameField << new Cell(this);
@@ -19,6 +20,14 @@ const QList<QObject *> Model::gameFieldProperty() const{
         res << var;
 
     return res;
+}
+
+Gamer::Gamer Model::gamer() const{
+    return m_gamer;
+}
+
+void Model::setGamer(Gamer::Gamer gamer){
+    m_gamer = gamer;
 }
 
 bool Model::hasError(){
