@@ -9,7 +9,7 @@ Controller::Controller(Model * model, QObject *parent) :
 
 void Controller::chengeCell(int index){
     if(m_model->gameField().at(index)->value() == Empty){
-        m_model->gameField().at(index)->setValue(m_model->gamer() == Gamer::X ? X : O);
-        m_model->setGamer(m_model->gamer() == Gamer::X ? Gamer::O : Gamer::X);
+        m_model->gameField().at(index)->setValue(m_model->gamer());
+        m_model->setGamer(m_model->gamer() == X ? O : X);
     }
 }

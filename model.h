@@ -8,12 +8,6 @@ enum State{
     X,
     O
 };
-namespace Gamer{
-enum Gamer{
-    X,
-    O
-};
-}
 
 class Cell : public QObject{
     Q_OBJECT
@@ -45,8 +39,8 @@ public:
     const QList<Cell *> &gameField() const;
     const QList<QObject *> gameFieldProperty() const;
 
-    Gamer::Gamer gamer() const;
-    void setGamer(Gamer::Gamer);
+    State gamer() const;
+    void setGamer(State);
 
     /** Возникла ошибка.*/
     bool hasError();
@@ -58,7 +52,7 @@ signals:
 
 private:
     QList<Cell*> m_gameField;
-    Gamer::Gamer m_gamer;
+    State m_gamer;
 };
 
 #endif // MODEL_H
