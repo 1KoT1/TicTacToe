@@ -3,6 +3,18 @@
 
 #include <QObject>
 
+enum line{
+    HorisontalTop,
+    HorisontalCenter,
+    HorisontalBottom,
+    VerticalLeft,
+    VerticalCenter,
+    VerticalRight,
+    Diagonal1,
+    Diagonal2,
+    NotLine
+};
+
 class Model;
 class Controller : public QObject{
     Q_OBJECT
@@ -17,6 +29,8 @@ public slots:
     
 private:
     Model * m_model;
+
+    line isVictory(int index) const;
 };
 
 #endif // CONTROLLER_H
