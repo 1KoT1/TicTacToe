@@ -84,6 +84,8 @@ public:
 
     QString victoryLine() const;
     void setVictoryLine(Line::LineEnum value);
+
+    bool gameIsActive() const;
 signals:
     void gameFieldChange();
     void hasErrorChange();

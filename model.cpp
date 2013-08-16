@@ -50,6 +50,10 @@ void Model::setVictoryLine(Line::LineEnum value){
     }
 }
 
+bool Model::gameIsActive() const{
+    return m_victoryLine == Line::NotLine;
+}
+
 
 Cell::Cell(QObject *parent) :
     QObject(parent),

@@ -92,7 +92,7 @@ Line::LineEnum isVictory(int index, const QList<Cell*>* gameField)
 }
 
 void Controller::chengeCell(int index){
-    if(m_model->gameField().at(index)->value() == State::Empty){
+    if(m_model->gameIsActive() && m_model->gameField().at(index)->value() == State::Empty){
         m_model->gameField().at(index)->setValue(m_model->gamer());
         auto isV = isVictory(index, &m_model->gameField());
         if(isV == Line::NotLine)
